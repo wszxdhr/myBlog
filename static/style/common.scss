@@ -1,0 +1,96 @@
+@import "./base.scss";
+* {}
+
+// 容器
+.container {
+  background-color: #ffffff;
+  padding: $common-gap;
+  margin: 0 auto;
+  max-width: 800px;
+}
+
+// ArticleItem
+.article-item {
+  display: flex;
+  .article-item__content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+  .article-item__title {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.5;
+    transition: all .3s;
+    cursor: pointer;
+    display: block;
+  }
+  .article-item__abstract {
+    font-size: 13px;
+    color: $very-dark-gray;
+    padding-top: $slim-gap;
+    line-height: 1.4;
+    cursor: pointer;
+    display: block;
+    flex: 1;
+  }
+  .article-item__footer {
+    margin-top: $slim-gap;
+    .view-icon {
+      color: $main-color;
+    }
+    .view-number {
+      color: $main-color;
+    }
+    &__dot {}
+    &__updated-time {
+      color: $gray;
+    }
+  }
+  .article-item__banner {
+    flex: 1;
+    //align-self: center;
+    width: 120px;
+    height: 120px;
+    min-width: 120px;
+    min-height: 120px;
+    max-width: 120px;
+    max-height: 120px;
+    margin-left: $common-gap;
+    background: {
+      position: center;
+      size: cover;
+    };
+    cursor: pointer;
+  }
+  &:hover {
+    .article-item__title {
+      color: $main-color;
+    }
+  }
+  & + .article-item {
+    border-top: 1px solid $super-light-gray;
+    padding-top: $common-gap;
+    margin-top: $common-gap;
+  }
+}
+
+// 通用tags
+.tags {
+  display: inline-block;
+  .tag {
+    display: inline-block;
+    border: 1px solid $main-color;
+    border-radius: 4px;
+    color: lighten($main-color, 10%);
+    font-size: 13px;
+    line-height: 26px;
+    padding: 0 15px;
+    cursor: pointer;
+    transition: all .3s;
+    &:hover {
+      background-color: $main-color;
+      color: #ffffff;
+    }
+  }
+}
