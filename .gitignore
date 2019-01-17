@@ -82,3 +82,6 @@ dist
 
 # sql config
 server/config/sql.js
+
+# pm2 config
+pm2.js
