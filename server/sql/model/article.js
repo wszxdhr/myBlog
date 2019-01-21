@@ -9,7 +9,8 @@ const Article = sql.define('articles', {
   content: Sequelize.TEXT,
   subject: Sequelize.STRING,
   banner: Sequelize.TEXT,
-  abstract: Sequelize.TEXT
+  abstract: Sequelize.TEXT,
+  article_id: Sequelize.TEXT
 })
 
 module.exports = Article

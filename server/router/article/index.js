@@ -1,21 +1,19 @@
 const Router = require('koa-router')
-const {getArticleList} = require('../../sql/actions/article')
+const {getArticleList, getArticle} = require('../../sql/actions/article')
 
 let article = new Router()
 
-article.get('/', async ( ctx ) => {
-  console.log(ctx.request.query)
+article.get('/:id', async ( ctx ) => {
+  console.log(ctx.request)
   let args = []
   ctx.body = {
     error: 0,
-    data: {
-      list: await getArticleList(...args)
-    }
+    data: await getArticle(...args)
   }
 })
 
-article.get('/:id', async ( ctx ) => {
-  console.log(ctx.request)
+article.get('/', async ( ctx ) => {
+  console.log(ctx.request.query)
   let args = []
   ctx.body = {
     error: 0,

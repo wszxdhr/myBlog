@@ -7,9 +7,16 @@
 <script>
 export default {
   name: 'ArticleContainer',
+  data: () => ({
+    markdown: ''
+  }),
   created () {
     this.$axios.getArticle({id: this.$route.params.id}).then(res => {
-      console.log(res)
+      let resData = res.data
+      if (res.error || !resData) {} else {
+        
+      }
+      console.log(resData)
     })
   }
 }
