@@ -7,12 +7,13 @@ const bodyParser = require('koa-bodyparser')
 
 let router = require('./router/index')
 const app = new Koa()
-const host = process.env.HOST || '127.0.0.1'
-const port = process.env.PORT || 8998
 
 // Import and Set Nuxt.js options
 let config = require('../nuxt.config.js')
 config.dev = !(app.env === 'production')
+
+const host = process.env.HOST || '127.0.0.1'
+const port = process.env.PORT || (config.dev ? 8880 : 8998)
 
 async function start() {
   // Instantiate nuxt.js
