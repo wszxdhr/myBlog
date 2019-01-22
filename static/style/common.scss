@@ -75,6 +75,53 @@
   }
 }
 
+.article-markdown {
+  padding: 0 20px 20px;
+  margin-bottom: 20px;
+  code {
+    font-size: 16px;
+    white-space: pre;
+  }
+  h1:first-of-type {
+    display: none;
+  }
+  h2 {
+    border-bottom: 1px solid #eeeeee;
+    color: #333333;
+    font-size: 24px;
+    line-height: 40px;
+    margin-top: 24px;
+  }
+  h3 {
+    color: #222222;
+    font-size: 20px;
+    line-height: 30px;
+    margin-top: 18px;
+  }
+  h4, h5 {
+    color: #111111;
+    font-size: 18px;
+    line-height: 24px;
+    margin-top: 15px;
+  }
+  h5 {
+    font-size: 16px;
+  }
+  p, pre {
+    font-size: 16px;
+    color: #000000;
+    margin-top: 15px;
+
+    &>code {
+      background-color: #f9f2f4;
+      color: #c7254e;
+      padding: 2px 4px;
+      border-radius: 2px;
+      margin: 2px 0;
+    }
+  }
+}
+
 // 通用tags
 .tags {
   display: inline-block;
