@@ -75,9 +75,8 @@
   }
 }
 
-.article-markdown {
-  padding: 0 20px 20px;
-  margin-bottom: 20px;
+.markdown {
+  padding: 0 20px;
   code {
     font-size: 16px;
     white-space: pre;
@@ -91,6 +90,9 @@
     font-size: 24px;
     line-height: 40px;
     margin-top: 24px;
+    &:first-of-type {
+      margin-top: 0;
+    }
   }
   h3 {
     color: #222222;
@@ -120,6 +122,9 @@
       margin: 2px 0;
     }
   }
+}
+
+.article-container {
 }
 
 // 通用tags
