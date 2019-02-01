@@ -8,13 +8,45 @@
         type: String
       }
     },
-    methods: {},
+    methods: {
+      elementHandler (el, h) {
+        if (el instanceof Array) {
+          let tag = el.shift()
+          if (tag === 'pre' && el[0] && el[0][0] === 'code' && el[0][1].slice(0, 8) === 'jsfiddle') {
+            return h('iframe', {
+              domProps: {
+                src: el[0][1].replace('jsfiddle:', ''),
+                height: '300',
+                width: '100%',
+                allowFullScreen: 'allowfullscreen',
+                frameBorder: '0'
+              }
+            })
+          } else {
+            let children = []
+            for (let i = 0; i < el.length; i++) {
+              children.push(this.elementHandler(el[i], h))
+            }
+            let _class = {}
+            if (tag === 'html') {
+              _class.markdown = true
+            }
+            return h(tag === 'html' ? 'div' : tag, {
+              class: _class
+            }, children)
+          }
+        } else if (typeof el === 'string') {
+          return h('span', {
+            domProps: {
+              innerText: el
+            }
+          })
+        }
+      }
+    },
     render (h) {
-      console.log('markdown: ')
-      console.log(markdown.parse(this.markdown))
-      return h('div', {
-        'class': ['markdown']
-      })
+      console.log(markdown.toHTMLTree(this.markdown))
+      return this.elementHandler(markdown.toHTMLTree(this.markdown), h)
     }
   }
 </script>
