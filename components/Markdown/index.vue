@@ -13,6 +13,7 @@
         if (el instanceof Array) {
           let tag = el.shift()
           if (tag === 'pre' && el[0] && el[0][0] === 'code' && el[0][1].slice(0, 8) === 'jsfiddle') {
+            // 代码块
             return h('iframe', {
               domProps: {
                 src: el[0][1].replace('jsfiddle:', ''),
@@ -23,6 +24,7 @@
               }
             })
           } else {
+            // html
             let children = []
             for (let i = 0; i < el.length; i++) {
               children.push(this.elementHandler(el[i], h))
@@ -36,6 +38,7 @@
             }, children)
           }
         } else if (typeof el === 'string') {
+          // 纯文字
           return h('span', {
             domProps: {
               innerText: el
