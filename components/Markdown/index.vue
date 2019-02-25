@@ -1,7 +1,11 @@
 <script>
   import {markdown} from 'markdown'
+  import Code from './code'
   export default {
     name: 'Markdown',
+    components: {
+      'codeBlock': Code
+    },
     props: {
       markdown: {
         default: '',
@@ -12,15 +16,27 @@
       elementHandler (el, h) {
         if (el instanceof Array) {
           let tag = el.shift()
-          if (tag === 'pre' && el[0] && el[0][0] === 'code' && el[0][1].slice(0, 8) === 'jsfiddle') {
+          if (tag === 'pre' && el[0] && el[0][0] === 'code') {
             // 代码块
-            return h('iframe', {
-              domProps: {
-                src: el[0][1].replace('jsfiddle:', ''),
-                height: '300',
-                width: '100%',
-                allowFullScreen: 'allowfullscreen',
-                frameBorder: '0'
+            return h('code-block', {
+              props: {
+                content: el[0][1]
+              }
+            })
+            // return h('iframe', {
+            //   domProps: {
+            //     src: el[0][1].replace('jsfiddle:', ''),
+            //     height: '300',
+            //     width: '100%',
+            //     allowFullScreen: 'allowfullscreen',
+            //     frameBorder: '0'
+            //   }
+            // })
+          } else if (tag === 'code') {
+            console.log(el)
+            return h('code-block', {
+              props: {
+                content: el[0]
               }
             })
           } else {
