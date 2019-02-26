@@ -7,13 +7,26 @@
         class="code-block__code-row">{{ row }}</span>
     </code>
     <div class="code-block__buttons">
-      <el-button
-        size="mini"
-        class="code-block__button-left">在Jsfiddle上编辑</el-button>
-      <el-button
-        size="mini"
-        class="code-block__button-right"
-        @click="addToClipboard">复制代码</el-button>
+      <a
+        :href="jsfiddleSrc.slice(9)"
+        target="_blank">
+        <el-button
+          v-if="jsfiddleSrc"
+          size="mini"
+          class="code-block__button-left">在Jsfiddle上编辑</el-button>
+      </a>
+      <el-tooltip
+        :manual="true"
+        :enterable="false"
+        :value="showClipboardTooltip"
+        effect="dark"
+        content="已复制"
+        placement="top">
+        <el-button
+          size="mini"
+          class="code-block__button-right"
+          @click="addToClipboard">复制代码</el-button>
+      </el-tooltip>
     </div>
   </div>
 </template>
@@ -29,7 +42,9 @@ export default {
     }
   },
   data () {
-    return {}
+    return {
+      showClipboardTooltip: false
+    }
   },
   computed: {
     isInlineCode () {
@@ -47,7 +62,6 @@ export default {
     },
     handledContent () {
       let contentRows = this.content.split('\n')
-      console.log(contentRows, this.isInlineCode)
       if (!this.isInlineCode) {
         contentRows = contentRows.slice(1, contentRows.length)
       }
@@ -82,6 +96,10 @@ export default {
     },
     addToClipboard () {
       copy(this.handledContent)
+      this.showClipboardTooltip = true
+      setTimeout(() => {
+        this.showClipboardTooltip = false
+      }, 1500)
     }
   }
 }
@@ -108,6 +126,8 @@ export default {
         transition: .3s;
         pointer-events: none;
         opacity: 0;
+      }
+      &.has-jsfiddle {
         .el-button {
           margin: 0;
           border-top-left-radius: 0;

@@ -16,7 +16,6 @@ export default {
   }),
   created () {
     this.$axios.getArticleList({subject: 'frontend'}).then(res => {
-      console.log(res)
       if (!res.error) {
         this.dataList = res.data.list || []
       }

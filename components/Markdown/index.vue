@@ -33,7 +33,6 @@
             //   }
             // })
           } else if (tag === 'code') {
-            console.log(el)
             return h('code-block', {
               props: {
                 content: el[0]
@@ -64,7 +63,6 @@
       }
     },
     render (h) {
-      console.log(markdown.toHTMLTree(this.markdown))
       return this.elementHandler(markdown.toHTMLTree(this.markdown), h)
     }
   }

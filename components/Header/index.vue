@@ -5,14 +5,14 @@
         :class="['layout__header__item', {active: isActive('frontend')}]"
         to="/frontend"
         tag="li">前端</nuxt-link>
-      <nuxt-link
-        :class="['layout__header__item', {active: isActive('life')}]"
-        to="/life"
-        tag="li">日常</nuxt-link>
-      <nuxt-link
-        :class="['layout__header__item', {active: isActive('guitar')}]"
-        to="/guitar"
-        tag="li">吉他</nuxt-link>
+        <!--<nuxt-link-->
+        <!--:class="['layout__header__item', {active: isActive('life')}]"-->
+        <!--to="/life"-->
+        <!--tag="li">日常</nuxt-link>-->
+        <!--<nuxt-link-->
+        <!--:class="['layout__header__item', {active: isActive('guitar')}]"-->
+        <!--to="/guitar"-->
+        <!--tag="li">吉他</nuxt-link>-->
     </ul>
   </div>
 </template>
@@ -21,7 +21,6 @@
 export default {
   name: 'LayoutHeader',
   created () {
-    console.log(this.$route.name)
   },
   methods: {
     isActive (platform) {

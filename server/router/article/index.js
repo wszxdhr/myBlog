@@ -4,7 +4,6 @@ const {getArticleList, getArticle} = require('../../sql/actions/article')
 let article = new Router()
 
 article.get('/:id', async ( ctx ) => {
-  console.log(ctx.request)
   let args = []
   ctx.body = {
     error: 0,
@@ -13,7 +12,6 @@ article.get('/:id', async ( ctx ) => {
 })
 
 article.get('/', async ( ctx ) => {
-  console.log(ctx.request.query)
   let args = []
   ctx.body = {
     error: 0,

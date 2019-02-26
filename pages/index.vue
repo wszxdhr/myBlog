@@ -1,6 +1,6 @@
 <template>
   <section class="container">
-    index
+    我的博客
   </section>
 </template>
 
@@ -10,6 +10,9 @@ import Logo from '~/components/Logo.vue'
 export default {
   components: {
     Logo
+  },
+  created () {
+    this.$router.push('frontend')
   }
 }
 </script>
