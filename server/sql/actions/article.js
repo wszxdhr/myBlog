@@ -1,4 +1,5 @@
 const Article = require('../model/article')
+const md5 = require('md5')
 
 const getArticleList = function (subject) {
   let where = {}
@@ -26,7 +27,7 @@ const getArticle = function (params) {
   let where = {}
   const id = params && params.id
   if (id) {
-    where.subject_id = id
+    where.article_id = id
   }
   return Article.findOne({
     where
@@ -42,7 +43,32 @@ const getArticle = function (params) {
   })
 }
 
+const updateArticle = function (params) {
+  const id = params && params.id || ''
+  delete params.id
+  try {
+    if (id) {
+      return Article.update({
+        ...params
+      }, {
+        where: {
+          article_id: id
+        }
+      })
+    } else {
+      const hash = md5(new Date().valueOf() + params.title)
+      return Article.create({
+        article_id: hash,
+        ...params
+      })
+    }
+  } catch (err) {
+    console.error(err)
+  }
+}
+
 module.exports = {
   getArticle,
-  getArticleList
+  getArticleList,
+  updateArticle
 }

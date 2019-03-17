@@ -5,4 +5,7 @@ export default function (axios) {
   axios.getArticle = (params) => {
     return axios.get(`/article/${params.id}`)
   }
+  axios.updateArticle = (params) => {
+    return axios.post(`/article/update`, params)
+  }
 }

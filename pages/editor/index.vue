@@ -10,7 +10,8 @@
           placeholder="未输入文章ID，则为添加" >
           <el-button
             slot="append"
-            icon="el-icon-search" />
+            icon="el-icon-search"
+            @click="getArticle" />
         </el-input>
       </el-form-item>
       <el-form-item label="密码">
@@ -45,7 +46,9 @@
           type="textarea" />
       </el-form-item>
       <el-form-item>
-        <el-button type="primary">提交</el-button>
+        <el-button
+          type="primary"
+          @click="submit">提交</el-button>
       </el-form-item>
     </el-form>
   </section>
@@ -66,6 +69,33 @@ export default {
         subject: '',
         banner: ''
       }
+    }
+  },
+  methods: {
+    getArticle () {
+      if (this.articleId) {
+        this.$axios.getArticle({
+          id: this.articleId
+        }).then(res => {
+          if (res && res.data) {
+            const {data} = res
+            this.form.title = data.title
+            this.form.tags = data.tags.join(',')
+            this.form.content = data.content
+            this.form.description = data.description
+            this.form.subject = data.subject
+            this.form.banner = data.banner
+          }
+        })
+      }
+    },
+    submit () {
+      this.$axios.updateArticle({
+        ...this.form,
+        tags: (this.form.tags || '').split(','),
+        id: this.articleId
+      }).then(res => {
+      })
     }
   }
 }
