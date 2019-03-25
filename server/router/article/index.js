@@ -34,6 +34,7 @@ article.post('/update', async ( ctx ) => {
   await new Promise(async resolve => {
     fs.readFile(path.join(__dirname, '../../../pm2.json'), async (err, data) => {
       if (err) {
+        console.error(err)
         failed()
       } else {
         const config = JSON.parse(data.toString())
@@ -54,6 +55,7 @@ article.post('/update', async ( ctx ) => {
             failed()
           })
         } else {
+          console.error('canEdit = false')
           failed()
         }
       }
