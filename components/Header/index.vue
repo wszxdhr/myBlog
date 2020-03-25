@@ -14,6 +14,9 @@
         <!--to="/guitar"-->
         <!--tag="li">吉他</nuxt-link>-->
     </ul>
+    <div style="position: fixed; z-index: 20000000; bottom: 0; padding-bottom: 20px; left: 0; text-align: center; width: 100%; color: #000; background-color: #fff;">
+      <a href="http://beian.miit.gov.cn/">黑ICP备17005381号-1</a> <a href="http://www.beian.gov.cn/portal/registerSystemInfo">浙公安备 33010502004433</a>
+    </div>
   </div>
 </template>
 
